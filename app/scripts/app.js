@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-  .module('stevenbraunsteinApp', [
+  .module('mytodoApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
