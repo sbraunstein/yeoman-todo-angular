@@ -1,7 +1,14 @@
 'use strict';
 
 angular.module('mytodoApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', function ($scope, localStorageService) {
+    var todosInStore = localStorageService.get('todos');
+    $scope.todos = todosInStore || [];
+
+    $scope.$watch('todos', function () {
+    localStorageService.set('todos', $scope.todos);
+    }, true);
+    
   	$scope.addTodo = function () {
   		$scope.todos.push($scope.todo);
   		$scope.todo = '';
@@ -9,5 +16,5 @@ angular.module('mytodoApp')
   	$scope.removeTodo = function (index) {
   		$scope.todos.splice(index, 1);
   	};
-    $scope.todos = ['Item 1', 'Item 2', 'Item 3', 'Item 4'];
+    $scope.todos = [];
   });
